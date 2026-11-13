@@ -316,7 +316,8 @@ section[id],div[id]{scroll-margin-top:84px}
 .rep__hint i{font-style:normal}
 .h-tap{display:none}
 @media (hover:hover){.rep__photo:hover .rep__a{opacity:0;transform:translateX(-7%)}.rep__photo:hover .rep__b{opacity:1;transform:none}}
-@media (hover:none){.h-hover{display:none}.h-tap{display:inline}}
+@media (hover:hover){.rep__hint{display:none}}
+@media (hover:none){.h-tap{display:inline}}
 .rep__name{font-size:clamp(22px,2.4vw,32px);font-weight:900;line-height:1.4;padding-bottom:6px}
 .rep__name small{display:block;font-size:13px;font-weight:700;color:var(--muted)}
 
@@ -1038,7 +1039,7 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
           <button type="button" class="rep__photo" id="rep-photo" aria-pressed="false" aria-label="代表取締役 鈴木 北斗の写真。押すとスポーツ姿の写真に切り替わります">
             <img class="rep__a" src="media/suzuki-jacket.jpg" alt="" width="400" height="400" loading="lazy">
             <img class="rep__b" src="media/suzuki-sport.jpg" alt="" width="400" height="400" loading="lazy">
-            <span class="rep__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13M13 4l4 4-4 4M20 16H7M11 12l-4 4 4 4"/></svg><i class="h-hover">カーソルを合わせると切り替わります</i><i class="h-tap">タップで切り替え</i></span>
+            <span class="rep__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13M13 4l4 4-4 4M20 16H7M11 12l-4 4 4 4"/></svg><i class="h-tap">タップで切り替え</i></span>
           </button>
           <p class="rep__name"><small>代表取締役</small>鈴木 北斗</p>
         </div>
