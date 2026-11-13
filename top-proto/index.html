@@ -303,6 +303,23 @@ section[id],div[id]{scroll-margin-top:84px}
 .wx__it::after{content:"";position:absolute;left:13%;top:0;width:87%;height:86%;border-radius:32px 0 0 32px;background:linear-gradient(0deg,rgba(10,22,40,.6) 0,rgba(10,22,40,0) 42%);pointer-events:none}
 .wx__note{grid-column:1 / -1;margin-top:clamp(20px,2.4vw,36px);padding-right:clamp(28px,4.4vw,72px);font-size:12.5px;line-height:1.8;color:var(--muted)}
 
+/* ---------- representative photo: slides to the other photo on hover / tap ---------- */
+.rep{display:flex;align-items:flex-end;gap:clamp(16px,2vw,28px);margin-bottom:clamp(28px,3vw,44px)}
+.rep__photo{position:relative;flex:none;width:min(62%,300px);aspect-ratio:1;border-radius:28px;overflow:hidden;border:0;padding:0;margin:0;cursor:pointer;background:var(--mist);box-shadow:0 30px 60px -34px rgba(10,22,40,.5);-webkit-tap-highlight-color:transparent}
+.rep__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .55s ease,transform .75s cubic-bezier(.22,.7,.2,1)}
+.rep__a{object-position:50% 20%}
+.rep__b{opacity:0;transform:translateX(7%)}
+.rep__photo.is-on .rep__a{opacity:0;transform:translateX(-7%)}
+.rep__photo.is-on .rep__b{opacity:1;transform:none}
+.rep__hint{position:absolute;left:10px;top:10px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:700;line-height:1.4;color:#fff;background:rgba(10,22,40,.72);border-radius:999px;padding:7px 12px}
+.rep__hint svg{width:16px;height:16px;flex:none}
+.rep__hint i{font-style:normal}
+.h-tap{display:none}
+@media (hover:hover){.rep__photo:hover .rep__a{opacity:0;transform:translateX(-7%)}.rep__photo:hover .rep__b{opacity:1;transform:none}}
+@media (hover:none){.h-hover{display:none}.h-tap{display:inline}}
+.rep__name{font-size:clamp(22px,2.4vw,32px);font-weight:900;line-height:1.4;padding-bottom:6px}
+.rep__name small{display:block;font-size:13px;font-weight:700;color:var(--muted)}
+
 /* ---------- section head ---------- */
 .sec{position:relative;padding-block:clamp(96px,13vw,200px)}
 .ghost{transform:translateX(calc(var(--gx,0) * 1px));will-change:transform;font-family:var(--f-disp);font-weight:800;font-size:clamp(72px,17vw,270px);line-height:.82;letter-spacing:-.02em;color:#EDF2F8;white-space:nowrap;user-select:none;margin-left:-.05em}
@@ -508,6 +525,8 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
 @media (max-width:900px){
   .hero{grid-template-columns:minmax(0,1fr);padding:28px var(--gut) 72px;row-gap:36px}
   .hero{min-height:0}
+  .rep{flex-direction:column;align-items:flex-start}
+  .rep__photo{width:min(100%,320px)}
   .wx{grid-template-columns:minmax(0,1fr);padding:28px 0 28px 20px;border-radius:28px;row-gap:28px}
   .wx__txt{padding-right:20px}
   .wx__chips{--c:min(104px,27vw);justify-content:center}
@@ -575,6 +594,7 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .phone--hero{transform:rotate(-3deg)}
+  .rep__photo img,.rep__photo.is-on .rep__a,.rep__photo:hover .rep__a{transform:none}
   .ring__shot{animation:none}
   .arc__row,.lpx__slice--l,.lpx__slice--r{will-change:auto}
   .arc__row{transform:none}
@@ -739,7 +759,7 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
     <button type="button" class="ring__btn ring__btn--main" id="ring-toggle" aria-label="周回を止める"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg></button>
     <button type="button" class="ring__btn" id="ring-next" aria-label="次の画面へ回す"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
-  <p class="wrap ringsec__note">Webは各社の公開サイトを、スマートフォンの幅で表示したものです。制作・担当範囲を確認中のものを含むため、すべてが斗の制作実績という意味ではありません。アプリは、実際の画面の掲載許可を確認する前のため、デモ画面を表示しています。</p>
+  <p class="wrap ringsec__note">Webは、各社の公開サイトをスマートフォンの幅で表示した実際の画面です（掲載の許可をいただいています）。アプリは、実際の画面の掲載許可を確認する前のため、デモ画面を表示しています。</p>
 </section>
 
 <!-- ③ Web制作・AI動画制作 -->
@@ -783,7 +803,7 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
             <p class="wx__cap"><b>Web｜cectokyo.com</b><span>仕事の合間に、会社の取り組みや採用情報を見る。</span></p>
           </div>
         </div>
-        <p class="wx__note">スマートフォンの中は、各社の公開サイトの実際の画面です（制作・担当範囲を確認中のものを含みます）。写真はAIで生成したイメージで、各サイトやそのお客様とは関係がありません。</p>
+        <p class="wx__note">スマートフォンの中は、各社の公開サイトの実際の画面です（掲載の許可をいただいています）。写真はAIで生成したイメージで、各サイトやそのお客様とは関係がありません。</p>
       </article>
 
       <article class="svc svc--dark" id="video">
@@ -1013,7 +1033,16 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
         <h2 class="co__motto" id="co-h">全ての人の<br>道標に</h2>
         <p class="co__txt">北斗七星が旅する人の目印になってきたように、事業を進める人の道標でありたい。株式会社斗は、この言葉をコンセプトに、テクノロジーで企業の次の一歩を支えます。</p>
       </div>
-      <table>
+      <div class="co__side">
+        <div class="rep">
+          <button type="button" class="rep__photo" id="rep-photo" aria-pressed="false" aria-label="代表取締役 鈴木 北斗の写真。押すとスポーツ姿の写真に切り替わります">
+            <img class="rep__a" src="media/suzuki-jacket.jpg" alt="" width="400" height="400" loading="lazy">
+            <img class="rep__b" src="media/suzuki-sport.jpg" alt="" width="400" height="400" loading="lazy">
+            <span class="rep__hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13M13 4l4 4-4 4M20 16H7M11 12l-4 4 4 4"/></svg><i class="h-hover">カーソルを合わせると切り替わります</i><i class="h-tap">タップで切り替え</i></span>
+          </button>
+          <p class="rep__name"><small>代表取締役</small>鈴木 北斗</p>
+        </div>
+        <table>
         <caption class="sr">会社概要</caption>
         <tr><th scope="row">社名</th><td>株式会社 斗（Hishaku Inc.）</td></tr>
         <tr><th scope="row">代表者</th><td>代表取締役 鈴木 北斗</td></tr>
@@ -1021,6 +1050,7 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
         <tr><th scope="row">設立</th><td>2020年</td></tr>
         <tr><th scope="row">事業内容</th><td>アプリ開発／Web制作／AI動画制作／オンラインサッカースクール「ANDANTE」の運営</td></tr>
       </table>
+      </div>
     </div>
   </div>
 </section>
@@ -1195,6 +1225,13 @@ fieldset.fld{border:0;margin:0;padding:0;min-width:0}
   /* --- ANDANTE reel: loads only when play is pressed --- */
   var av=document.getElementById('areel-v'), ap=document.getElementById('areel-play');
   if(av && ap){ ap.addEventListener('click', function(){ av.src=av.dataset.src; av.controls=true; ap.hidden=true; var p=av.play(); if(p&&p.catch) p.catch(function(){}); }); }
+
+  /* --- representative photo: tap / Enter / Space toggles; leaving with the cursor returns to the first photo --- */
+  var rp=document.getElementById('rep-photo');
+  if(rp){
+    rp.addEventListener('click', function(){ var on=!rp.classList.contains('is-on'); rp.classList.toggle('is-on',on); rp.setAttribute('aria-pressed', String(on)); });
+    rp.addEventListener('mouseleave', function(){ rp.classList.remove('is-on'); rp.setAttribute('aria-pressed','false'); });
+  }
 
   /* --- Web panel: round switches change the scene photo and the real site in the phone --- */
   var wxEl=document.getElementById('wx');
